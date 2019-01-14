@@ -11,16 +11,16 @@ const mathematicalConstants = require("./topics/mathematical_constants.js");
 
 const app = express();
 app.use(cors());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname + "/../frontend/dist/")));
 
 const port = process.env.PORT || 3000;
-
+/*
 app.get("/", (req, res) =>
   {
     res.sendFile(path.join(__dirname + "/../frontend/dist/index.html"));
   }
 );
-
+*/
 function randomMessage(messages) {
   return messages[Math.floor(Math.random() * messages.length)];
 }
