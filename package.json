@@ -10,8 +10,6 @@
   "license": "ISC",
   "devDependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "body-parser":"*",
-    "bcrypt": "^2.0.0"
+    "express": "^4.16.4"
   }
 }
