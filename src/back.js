@@ -2,7 +2,6 @@
 const path = require('path');
 const cors = require("cors");
 const express = require("express");
-const compression = require("compression");
 const messages = require("./messages.js");
 const topics = require("./topic_names.js");
 const chineseNumbers = require("./topics/chinese_numbers.js");
@@ -13,7 +12,6 @@ const mathematicalConstants = require("./topics/mathematical_constants.js");
 const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname + "/../frontend/dist/")));
-app.use(compression());
 
 const port = process.env.PORT || 3000;
 /*
