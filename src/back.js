@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) =>
   {
-    res.sendFile(path.resolve(__dirname, "./frontend/dist/index.html"));
+    res.sendFile(path.resolve(__dirname, "/../frontend/dist/index.html"));
   }
 );
 
