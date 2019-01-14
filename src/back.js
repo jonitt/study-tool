@@ -1,3 +1,5 @@
+//Author: Joni Tuhkanen
+const path = require('path');
 const cors = require("cors");
 const express = require("express");
 const messages = require("./messages.js");
@@ -9,13 +11,12 @@ const mathematicalConstants = require("./topics/mathematical_constants.js");
 
 const app = express();
 app.use(cors());
-//app.use(express.static(__dirname));
 
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) =>
   {
-    res.send(messages.messages[Math.floor(Math.random() * 4)]);
+    res.send(path.resolve(__dirname, "frontend/dist/index.html"));
   }
 );
 
