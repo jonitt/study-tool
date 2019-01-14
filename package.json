@@ -4,7 +4,7 @@
   "description": "",
   "main": "back.js",
   "scripts": {
-    "start": "node back.js",
+    "start": "node src/back.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joni Tuhkanen",
@@ -15,6 +15,6 @@
     "nodemon": "^1.18.9",
     "webpack-dev-server": "^3.1.14",
     "body-parser":"*",
-    "bcrypt": "^0.8.5"
+    "bcrypt": "^2.0.0"
   }
 }
