@@ -1,4 +1,5 @@
 //Author: Joni Tuhkanen
+//this the main file of serverside
 const path = require('path');
 const cors = require("cors");
 const express = require("express");
