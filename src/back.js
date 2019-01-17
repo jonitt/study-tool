@@ -15,16 +15,11 @@ app.use(cors());
 app.use(express.static(path.join(__dirname + "/../frontend/dist/")));
 
 const port = process.env.PORT || 3000;
-/*
-app.get("/", (req, res) =>
-  {
-    res.sendFile(path.join(__dirname + "/../frontend/dist/index.html"));
-  }
-);
-*/
-function randomMessage(messages) {
-  return messages[Math.floor(Math.random() * messages.length)];
-}
+
+app.use(function (req, res, next) {
+  initiateHeader(res);
+  next();
+});
 
 function initiateHeader(res) {
   res.set({
@@ -35,33 +30,37 @@ function initiateHeader(res) {
   return res;
 }
 
+function randomMessage(messages) {
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
 app.get("/topics", (req, res) =>
   {
-    initiateHeader(res).send(JSON.stringify(topics.topicNames));
+    res.send(JSON.stringify(topics.topicNames));
   }
 );
 
 app.get("/chinese_numbers", (req, res) =>
   {
-    initiateHeader(res).send(randomMessage(chineseNumbers.chineseNumbers));
+    res.send(randomMessage(chineseNumbers.chineseNumbers));
   }
 );
 
 app.get("/jokes", (req, res) =>
   {
-    initiateHeader(res).send(randomMessage(jokes.jokes));
+    res.send(randomMessage(jokes.jokes));
   }
 );
 
 app.get("/european_capitals", (req, res) =>
   {
-    initiateHeader(res).send(randomMessage(europeanCapitals.europeanCapitals));
+    res.send(randomMessage(europeanCapitals.europeanCapitals));
   }
 );
 
 app.get("/mathematical_constants", (req, res) =>
   {
-    initiateHeader(res).send(randomMessage(mathematicalConstants.mathematicalConstants));
+    res.send(randomMessage(mathematicalConstants.mathematicalConstants));
   }
 );
 
