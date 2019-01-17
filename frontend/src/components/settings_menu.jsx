@@ -36,7 +36,7 @@ class SettingsMenu extends React.Component {
 
   render() {
     return(
-      <form className="settings_menu" ref={node => this.node = node}>
+      <div className="settings_menu" ref={node => this.node = node}>
         <div className="settings_menu_choose_topic">
           <label className="settings_menu_label">Choose topic 1</label>
           <TopicSelect handleChange={t => this.handleChangeTopic(t, 0)} value={this.props.chosenTopics[0]} topics={this.props.topics} id="settings_menu_choose_topic_select_1"/>
@@ -49,7 +49,7 @@ class SettingsMenu extends React.Component {
           <label className="settings_menu_label" htmlFor="settings_menu_message_speed_numberinput">Message speed (s)</label>
           <NumberInput value={this.props.messageSpeed} min="1" max="6000" id="settings_menu_message_speed_numberinput" handleChange={(s) => this.handleMessageSpeed(s)} />
         </div>
-      </form>
+      </div>
     );
   }
 }

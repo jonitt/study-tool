@@ -7,7 +7,7 @@ class ChatMessages extends React.Component {
 
     this.messageWillBeFromTopic = 1;
     this.state = {
-      messages: [<ChatMessage color="green" text="The text will appear from here and move towards the top." />]
+      messages: [<ChatMessage color="green" text="The text will appear from here and move towards the top." key={this.generateKey()} />]
     };
   }
 

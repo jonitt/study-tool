@@ -1,4 +1,5 @@
 //Author: Joni Tuhkanen
+//this is the main app
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import IntroductionSlide from "./components/introduction_slide.jsx";
@@ -13,7 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.server = "https://studytool.herokuapp.com/";
+    this.server = "https://studytool.herokuapp.com/"; //http://localhost:3000/
 
     this.state = {
       topicsSlideClass: "hidden",

@@ -26,33 +26,42 @@ function randomMessage(messages) {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
+function initiateHeader(res) {
+  res.set({
+    "X-XSS-Protection": "1; mode=block",
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff"
+  });
+  return res;
+}
+
 app.get("/topics", (req, res) =>
   {
-    res.send(JSON.stringify(topics.topicNames));
+    initiateHeader(res).send(JSON.stringify(topics.topicNames));
   }
 );
 
 app.get("/chinese_numbers", (req, res) =>
   {
-    res.send(randomMessage(chineseNumbers.chineseNumbers));
+    initiateHeader(res).send(randomMessage(chineseNumbers.chineseNumbers));
   }
 );
 
 app.get("/jokes", (req, res) =>
   {
-    res.send(randomMessage(jokes.jokes));
+    initiateHeader(res).send(randomMessage(jokes.jokes));
   }
 );
 
 app.get("/european_capitals", (req, res) =>
   {
-    res.send(randomMessage(europeanCapitals.europeanCapitals));
+    initiateHeader(res).send(randomMessage(europeanCapitals.europeanCapitals));
   }
 );
 
 app.get("/mathematical_constants", (req, res) =>
   {
-    res.send(randomMessage(mathematicalConstants.mathematicalConstants));
+    initiateHeader(res).send(randomMessage(mathematicalConstants.mathematicalConstants));
   }
 );
 

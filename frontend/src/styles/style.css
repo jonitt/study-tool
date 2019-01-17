@@ -1,3 +1,6 @@
+/**
+Author: Joni Tuhkanen
+**/
 * {
   padding: 0;
   margin: 0;
@@ -301,10 +304,12 @@ body {
 
 #settings_menu_choose_topic_select_1 {
   min-width: 10px;
+  font-size: 1.2rem;
 }
 
 #settings_menu_choose_topic_select_2 {
   min-width: 10px;
+  font-size: 1.2rem;
 }
 
 #settings_menu_message_speed_numberinput {
