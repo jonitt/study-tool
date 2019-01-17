@@ -12,14 +12,13 @@ const mathematicalConstants = require("./topics/mathematical_constants.js");
 
 const app = express();
 app.use(cors());
-app.use(express.static(path.join(__dirname + "/../frontend/dist/")));
-
-const port = process.env.PORT || 3000;
-
 app.use(function (req, res, next) {
   initiateHeader(res);
   next();
 });
+app.use(express.static(path.join(__dirname + "/../frontend/dist/")));
+
+const port = process.env.PORT || 3000;
 
 function initiateHeader(res) {
   res.set({
