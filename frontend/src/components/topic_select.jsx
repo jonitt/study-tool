@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 /*
-peops:
+props:
   topics = topic names
   value = initial selected topic
   handleChange = handler for value change
@@ -14,9 +14,12 @@ class TopicSelect extends React.Component {
 
     console.log(this.props.value);
     this.state = {
-      selected: this.firstToUpper(this.props.value).replace("_", " "),
+      selected: this.firstToUpper(this.props.value).replace(
+        '_',
+        ' '
+      ),
       topics: null
-    }
+    };
   }
 
   componentDidMount() {
@@ -24,7 +27,9 @@ class TopicSelect extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.topics.length != this.props.topics.length) {
+    if (
+      prevProps.topics.length != this.props.topics.length
+    ) {
       this.addTopics(this.props.topics);
     }
   }
@@ -34,10 +39,11 @@ class TopicSelect extends React.Component {
   }
 
   addTopics(topicNames) {
-    let topics = topicNames.map(
-      t =>
-      <option key={this.generateKey()} value={t}>{t}</option>
-    );
+    let topics = topicNames.map(t => (
+      <option key={this.generateKey()} value={t}>
+        {t}
+      </option>
+    ));
     this.setState({
       topics: topics
     });
@@ -45,7 +51,9 @@ class TopicSelect extends React.Component {
 
   //create random key
   generateKey() {
-    return Math.random().toString(36).substr(2, 16);
+    return Math.random()
+      .toString(36)
+      .substr(2, 16);
   }
 
   handleChange(e) {
@@ -57,8 +65,12 @@ class TopicSelect extends React.Component {
   }
 
   render() {
-    return(
-      <select value={this.state.selected} id={this.props.id} onChange={this.handleChange}>
+    return (
+      <select
+        value={this.state.selected}
+        id={this.props.id}
+        onChange={this.handleChange}
+      >
         {this.state.topics}
       </select>
     );

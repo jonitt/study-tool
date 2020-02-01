@@ -1,5 +1,5 @@
-import React from "react";
-import TopicListingChoice from "./topic_listing_choice.jsx";
+import React from 'react';
+import TopicListingChoice from './topic_listing_choice.jsx';
 
 /*
 props:
@@ -19,25 +19,41 @@ class TopicListing extends React.Component {
   }
 
   componentWIllMount() {
-    this-initiateListing();
+    this - initiateListing();
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.topics.length != this.props.topics.length) {
+    if (
+      prevProps.topics.length != this.props.topics.length
+    ) {
       this.initiateListing();
     }
   }
 
   initiateListing() {
-    this.highlightTopic(parseInt(this.props.chosenTopicIndex), this.addTopics(this.props.topics));
+    this.highlightTopic(
+      parseInt(this.props.chosenTopicIndex),
+      this.addTopics(this.props.topics)
+    );
   }
 
   //unhighligy old choice and highlight new chosen
   handleChoosingTopic(chosen) {
     //remove highlight from previous chosen topic
     let oldChosenIndex = this.state.chosenTopicIndex;
-    if(oldChosenIndex >= 0 && oldChosenIndex < this.state.topics.length) {
-      this.state.topics[oldChosenIndex] = <TopicListingChoice index={oldChosenIndex} class="topic_listing_choice" text={this.props.topics[oldChosenIndex]} handleClick={(c) => this.handleChoosingTopic(c)} key={this.generateKey()} />
+    if (
+      oldChosenIndex >= 0 &&
+      oldChosenIndex < this.state.topics.length
+    ) {
+      this.state.topics[oldChosenIndex] = (
+        <TopicListingChoice
+          index={oldChosenIndex}
+          class='topic_listing_choice'
+          text={this.props.topics[oldChosenIndex]}
+          handleClick={c => this.handleChoosingTopic(c)}
+          key={this.generateKey()}
+        />
+      );
     }
     //highlight new choice
     let index = chosen.props.index;
@@ -50,8 +66,16 @@ class TopicListing extends React.Component {
   //index is index of chosen topic in given list of topics
   //topics is a component list of the topics
   highlightTopic(index, topics) {
-    if(index >= 0 && index < topics.length) {
-      topics[index] = <TopicListingChoice index={index} class="topic_listing_choice topic_listing_choice_clicked" text={this.props.topics[index]} handleClick={(c) => this.handleChoosingTopic(c)} key={this.generateKey()} />;
+    if (index >= 0 && index < topics.length) {
+      topics[index] = (
+        <TopicListingChoice
+          index={index}
+          class='topic_listing_choice topic_listing_choice_clicked'
+          text={this.props.topics[index]}
+          handleClick={c => this.handleChoosingTopic(c)}
+          key={this.generateKey()}
+        />
+      );
 
       this.setState({
         topics: topics,
@@ -62,11 +86,17 @@ class TopicListing extends React.Component {
 
   addTopics(topicNames) {
     let index = 0;
-    let topics = topicNames.map(
-      name => {
-        return <TopicListingChoice index={index++} class="topic_listing_choice" text={name} handleClick={(c) => this.handleChoosingTopic(c)} key={this.generateKey()} />;
-      }
-    );
+    let topics = topicNames.map(name => {
+      return (
+        <TopicListingChoice
+          index={index++}
+          class='topic_listing_choice'
+          text={name}
+          handleClick={c => this.handleChoosingTopic(c)}
+          key={this.generateKey()}
+        />
+      );
+    });
     this.setState({
       topics: topics
     });
@@ -75,12 +105,14 @@ class TopicListing extends React.Component {
 
   //create random key
   generateKey() {
-    return Math.random().toString(36).substr(2, 16);
+    return Math.random()
+      .toString(36)
+      .substr(2, 16);
   }
 
   render() {
-    return(
-      <div className="topic_listing">
+    return (
+      <div className='topic_listing'>
         {this.state.topics}
       </div>
     );

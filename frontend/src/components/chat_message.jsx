@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class ChatMessage extends React.Component {
   constructor(props) {
@@ -8,20 +8,18 @@ class ChatMessage extends React.Component {
   }
 
   setClassName(color) {
-    if(color === "green") {
-      this.className = "chat_message_green";
-    }
-    else {
-      this.className = "chat_message_white";
+    if (color === 'green') {
+      this.className = 'chat_message_green';
+    } else {
+      this.className = 'chat_message_white';
     }
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <div className={"chat_message " + this.className}>
+      <div className={'chat_message ' + this.className}>
         {this.text}
       </div>
     );

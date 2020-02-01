@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /*
 props:
@@ -17,8 +17,11 @@ class TopicListingChoice extends React.Component {
   }
 
   render() {
-    return(
-      <div className={this.props.class} onClick={this.handleClick}>
+    return (
+      <div
+        className={this.props.class}
+        onClick={this.handleClick}
+      >
         {this.props.text}
       </div>
     );

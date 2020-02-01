@@ -1,1 +1,1 @@
-import FormContainer from "./front.js";
+import FormContainer from './front.js';

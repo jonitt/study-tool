@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class IntroductionSlide extends React.Component {
   constructor(props) {
@@ -7,23 +7,23 @@ class IntroductionSlide extends React.Component {
     this.handleClick = this.handleClick.bind(this);
 
     this.state = {
-      class: "introduction_slide"
-    }
+      class: 'introduction_slide'
+    };
   }
 
   handleClick() {
     this.props.handleContinue();
 
     this.setState({
-      class: "hidden"
+      class: 'hidden'
     });
   }
 
   render() {
-    return(
+    return (
       <div className={this.state.class}>
-        <div className="introduction_slide_text">
-          <h1 className="introduction_slide_paragraph_1">
+        <div className='introduction_slide_text'>
+          <h1 className='introduction_slide_paragraph_1'>
             Effortless study tool helps you&nbsp;
             <br />
             with learning through repetition -&nbsp;
@@ -31,7 +31,7 @@ class IntroductionSlide extends React.Component {
             without needing any interaction!&nbsp;
           </h1>
           <br />
-          <p className="introduction_slide_paragraph_2">
+          <p className='introduction_slide_paragraph_2'>
             Effortless study tool shows short&nbsp;
             <br />
             bullet points from your chosen&nbsp;
@@ -45,15 +45,18 @@ class IntroductionSlide extends React.Component {
             your continuous attention.
           </p>
           <br />
-          <p className="introduction_slide_paragraph_3">
+          <p className='introduction_slide_paragraph_3'>
             To start learning, simply choose up to&nbsp;
             <br />
             two topics and you are good to go!
           </p>
           <br />
-          <hr className="introduction_slide_line" />
+          <hr className='introduction_slide_line' />
           <br />
-          <div onClick={this.handleClick} className="div_button introduction_slide_submitter">
+          <div
+            onClick={this.handleClick}
+            className='div_button introduction_slide_submitter'
+          >
             Continue ≫
           </div>
         </div>

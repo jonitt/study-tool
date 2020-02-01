@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /*
 props:
@@ -21,7 +21,7 @@ class NumberInput extends React.Component {
     //value is changed with a timer, so the server does not get filled
     //with request while user changes the value
     let value = e.target.value;
-    if(value < this.props.min || value > this.props.max) {
+    if (value < this.props.min || value > this.props.max) {
       return;
     }
     clearTimeout(this.timer);
@@ -33,8 +33,15 @@ class NumberInput extends React.Component {
   }
 
   render() {
-    return(
-      <input type="number" onChange={this.handleChange} defaultValue={this.value} min={this.props.min} max={this.props.max} id={this.props.id}/>
+    return (
+      <input
+        type='number'
+        onChange={this.handleChange}
+        defaultValue={this.value}
+        min={this.props.min}
+        max={this.props.max}
+        id={this.props.id}
+      />
     );
   }
 }

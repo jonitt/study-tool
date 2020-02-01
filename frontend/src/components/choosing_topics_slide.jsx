@@ -1,6 +1,6 @@
-import React from "react";
-import TopicSelect from "./topic_select.jsx";
-import TopicListing from "./topic_listing.jsx";
+import React from 'react';
+import TopicSelect from './topic_select.jsx';
+import TopicListing from './topic_listing.jsx';
 
 /*
 props:
@@ -15,18 +15,18 @@ class ChoosingTopicsSlide extends React.Component {
     this.state = {
       topics: this.props.topics,
       startHandler: () => {} //start is revented by default to prevent accidental pressing of start button
-    }
+    };
   }
 
   componentDidUpdate(prevProps) {
     //disable Start-button for a while when class is changed to prevent
     //user from clicking the button by accident
-    if(prevProps.class != this.props.class) {
+    if (prevProps.class != this.props.class) {
       setTimeout(
         () =>
-        this.setState({
-          startHandler: () => this.props.handleStart(),
-        }),
+          this.setState({
+            startHandler: () => this.props.handleStart()
+          }),
         800
       );
       //this needs to be triggered by preivous flag being submitted
@@ -38,27 +38,46 @@ class ChoosingTopicsSlide extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className={this.props.class}>
-        <div className="choosing_topics_slide_paragraph_1">
+        <div className='choosing_topics_slide_paragraph_1'>
           What would you like to learn about?
           <br />
-          <hr className="choosing_topics_slide_line" />
+          <hr className='choosing_topics_slide_line' />
         </div>
         <br />
-        <div className="choosing_topics_slide_paragraph_2">
+        <div className='choosing_topics_slide_paragraph_2'>
           Topic 1
           <br />
-          <TopicListing handleChoosingTopic={(t) => this.props.handleChoosingTopic(t, 0)} topics={this.props.topics} chosenTopicIndex={this.props.chosenTopicIndexes[0]}/>
+          <TopicListing
+            handleChoosingTopic={t =>
+              this.props.handleChoosingTopic(t, 0)
+            }
+            topics={this.props.topics}
+            chosenTopicIndex={
+              this.props.chosenTopicIndexes[0]
+            }
+          />
         </div>
         <br />
-        <div className="choosing_topics_slide_paragraph_2">
+        <div className='choosing_topics_slide_paragraph_2'>
           Topic 2 (optional)
           <br />
-          <TopicListing handleChoosingTopic={(t) => this.props.handleChoosingTopic(t, 1)} topics={this.props.topics} chosenTopicIndex={this.props.chosenTopicIndexes[1]}/>
+          <TopicListing
+            handleChoosingTopic={t =>
+              this.props.handleChoosingTopic(t, 1)
+            }
+            topics={this.props.topics}
+            chosenTopicIndex={
+              this.props.chosenTopicIndexes[1]
+            }
+          />
         </div>
         <br />
-        <div className="div_button choosing_topics_slide_submitter" onClick={() => this.handleStart()}>
+        <div
+          className='div_button choosing_topics_slide_submitter'
+          onClick={() => this.handleStart()}
+        >
           Start
         </div>
       </div>

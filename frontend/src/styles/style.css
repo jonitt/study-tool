@@ -78,7 +78,6 @@ body {
   display: inline-block;
 }
 
-
 @media screen and (max-width: 40em) {
   .introduction_slide_paragraph_1 {
     padding-left: 1rem;
@@ -109,7 +108,6 @@ body {
   .introduction_slide_paragraph_3 > br {
     display: none;
   }
-
 }
 
 .introduction_slide_line {
@@ -267,8 +265,7 @@ body {
 
 .settings_menu {
   padding: 1em 1em 1em 1em;
-  box-shadow:
-    1px 4px 5px 3px rgba(80, 80, 80, 0.5),
+  box-shadow: 1px 4px 5px 3px rgba(80, 80, 80, 0.5),
     1px 1px 2px 1px rgba(80, 80, 80, 0.6);
   border-radius: 3px;
   width: calc(14rem + 120px);
