@@ -1,6 +1,6 @@
 import React from 'react';
-import SettingsIcon from '../svg/settings-icon.svg';
-import SettingsMenu from './settings_menu.jsx';
+import SettingsIcon from '../../svg/settings-icon.svg';
+import SettingsMenu from './SettingsMenu';
 
 class Settings extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import TopicSelect from './topic_select.jsx';
-import TopicListing from './topic_listing.jsx';
+import TopicSelect from '../../components/topic-select/TopicSelect';
+import TopicListing from './TopicListing';
 
 /*
 props:

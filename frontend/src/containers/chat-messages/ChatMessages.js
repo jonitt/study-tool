@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatMessage from './chat_message.jsx';
+import ChatMessage from './ChatMessage';
 
 class ChatMessages extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import TopicListingChoice from './topic_listing_choice.jsx';
+import TopicListingChoice from './TopicListingChoice.js';
 
 /*
 props:

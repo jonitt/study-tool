@@ -1,6 +1,6 @@
 import React from 'react';
-import TopicSelect from './topic_select.jsx';
-import NumberInput from './number_input.jsx';
+import TopicSelect from '../../components/topic-select/TopicSelect';
+import NumberInput from '../../components/number-input/NumberInput';
 
 class SettingsMenu extends React.Component {
   constructor(props) {

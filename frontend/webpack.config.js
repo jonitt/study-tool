@@ -37,11 +37,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./page.html",
-      filename: "./index.html"
-    })
-  ]
+  }
 };
