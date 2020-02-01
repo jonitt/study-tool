@@ -1,6 +1,6 @@
 exports.topicNames = [
-  "Chinese numbers",
-  "European capitals",
-  "Jokes",
-  "Mathematical constants"
+  'Chinese numbers',
+  'European capitals',
+  'Jokes',
+  'Mathematical constants'
 ];
