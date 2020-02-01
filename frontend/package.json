@@ -2,11 +2,11 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "front.js",
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode development",
+    "start": "npx webpack-dev-server"
   },
   "keywords": [],
   "dependencies": {

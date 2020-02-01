@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
 
     this.server = 'https://studytool.herokuapp.com/'; //http://localhost:3000/
-
+    this.asd = {};
     this.state = {
       topicsSlideClass: 'hidden',
       messagesOn: false,
@@ -26,7 +26,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('asasdasdasdad');
     this.fetchTopics();
+    fetch('https://restcountries.eu/rest/v2/all')
+    .then(a => this.asd = a.json());
   }
 
   fetchTopics() {
@@ -74,6 +77,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.asd);
+    console.log(this.asd);
     return (
       <div className='app'>
         <IntroductionSlide
