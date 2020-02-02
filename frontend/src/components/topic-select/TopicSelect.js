@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './TopicSelect.css'
 
 /*
 props:
@@ -65,13 +66,19 @@ class TopicSelect extends React.Component {
   }
 
   render() {
+    const { topics, id } = this.props;
     return (
       <select
         value={this.state.selected}
-        id={this.props.id}
+        id={id}
         onChange={this.handleChange}
+        className={styles.select}
       >
-        {this.state.topics}
+        {topics.map(t => (
+          <option key={this.generateKey()} value={t.title}>
+            {t.title}
+          </option>
+        ))}
       </select>
     );
   }

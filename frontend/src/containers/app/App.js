@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import IntroductionSlide from '../introduction-slide/IntroductionSlide';
 import ChoosingTopicsSlide from '../choosing-topics-slide/ChoosingTopicsSlide';
 import ChatMessages from '../chat-messages/ChatMessages';
-import '../../styles/index.css';
 import SettingsIcon from '../../svg/settings-icon.svg';
 import Settings from '../settings/Settings';
 import * as CountriesApi from '../../api/countries';

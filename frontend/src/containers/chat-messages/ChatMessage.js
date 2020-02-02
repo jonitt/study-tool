@@ -5,9 +5,9 @@ const ChatMessage = props => {
   const { color, text } = props;
   return (
     <div
-      className={`${styles.message} ${
+      className={
         color === 'green' ? styles.green : styles.white
-      }`}
+      }
     >
       {text}
     </div>
