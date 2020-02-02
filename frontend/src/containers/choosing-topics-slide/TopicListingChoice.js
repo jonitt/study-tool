@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './TopicListingChoice.css';
 
 /*
 props:
@@ -17,9 +18,10 @@ class TopicListingChoice extends React.Component {
   }
 
   render() {
+    const { chosen } = this.props;
     return (
       <div
-        className={this.props.class}
+        className={chosen ? styles.choiceClicked : styles.choice}
         onClick={this.handleClick}
       >
         {this.props.text}

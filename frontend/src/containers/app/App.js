@@ -4,11 +4,13 @@
 import React, { Component } from 'react';
 import IntroductionSlide from '../introduction-slide/IntroductionSlide';
 import ChoosingTopicsSlide from '../choosing-topics-slide/ChoosingTopicsSlide';
-import ChatMessage from '../chat-messages/ChatMessage';
 import ChatMessages from '../chat-messages/ChatMessages';
-import Styles from '../../styles/style.css';
+import '../../styles/index.css';
 import SettingsIcon from '../../svg/settings-icon.svg';
 import Settings from '../settings/Settings';
+import * as CountriesApi from '../../api/countries';
+import { Topics } from '../../utils/topics';
+import styles from './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +19,21 @@ class App extends Component {
     this.server = 'https://studytool.herokuapp.com/'; //http://localhost:3000/
     this.asd = {};
     this.state = {
-      topicsSlideClass: 'hidden',
+      topicsSlideHidden: true,
       messagesOn: false,
-      topics: [''],
       messageSpeed: '4000',
-      chosenTopics: ['chinese_numbers', '']
+      chosenTopics: ['countries-capitals', '']
     };
   }
 
   componentDidMount() {
-    console.log('asasdasdasdad');
-    this.fetchTopics();
-    fetch('https://restcountries.eu/rest/v2/all')
-    .then(a => this.asd = a.json());
+    //this.fetchTopics();
+    CountriesApi.fetchCountries().then(res =>
+      console.log(res)
+    );
   }
 
+  /*
   fetchTopics() {
     fetch(this.server + 'topics')
       .then(res => res.text())
@@ -40,47 +42,70 @@ class App extends Component {
           topics: JSON.parse(res)
         })
       );
-  }
+  }*/
 
+  /**
+   * Show the topic's choosing page
+   */
   showTopicsSlide() {
     this.setState({
-      topicsSlideClass: 'choosing_topics_slide'
+      topicsSlideHidden: false
     });
   }
 
+  /**
+   * Handles starting the message flow of the program
+   */
   handleStart() {
-    if (this.state.chosenTopics[1].length < 1) {
-      this.state.chosenTopics[1] = this.state.chosenTopics[0];
+    let { chosenTopics } = this.state;
+
+    if (chosenTopics[1].length < 1) {
+      chosenTopics[1] = chosenTopics[0];
     }
+    console.log('setting to start showing messages and hide slide')
     this.setState({
       messagesOn: true,
-      topicsSlideClass: 'hidden',
-      chosenTopics: this.state.chosenTopics
+      topicsSlideHidden: true,
+      chosenTopics: chosenTopics
     });
   }
 
+  /**
+   * Frequency of new bullet points arriving
+   * @param {int} speed new speed in ms
+   */
   setMessageSpeed(speed) {
     this.setState({
       messageSpeed: speed * 1000 + ''
     });
   }
 
+  /**
+   * Change topic to show bullet points from
+   * @param {string} t topic's code
+   * @param {int} i Showed topic 1 (i = 0) or 2 (i = 1)
+   */
   handleChangeTopic(t, i) {
+    let { chosenTopics } = this.state;
     console.log('new topic:' + t);
-    this.state.chosenTopics[i] = t
+    chosenTopics[i] = t
       .trim()
       .replace(' ', '_')
       .toLowerCase();
     this.setState({
-      chosenTopics: this.state.chosenTopics
+      chosenTopics: chosenTopics
     });
   }
 
   render() {
-    console.log(this.asd);
-    console.log(this.asd);
+    const {
+      messageSpeed,
+      chosenTopics,
+      messagesOn,
+      topicsSlideHidden
+    } = this.state;
     return (
-      <div className='app'>
+      <div className={styles.app}>
         <IntroductionSlide
           handleContinue={() => this.showTopicsSlide()}
         />
@@ -88,32 +113,30 @@ class App extends Component {
           handleChoosingTopic={(t, i) =>
             this.handleChangeTopic(t, i)
           }
-          class={this.state.topicsSlideClass}
-          topics={this.state.topics}
+          hidden={topicsSlideHidden}
+          topics={Topics}
           chosenTopicIndexes={[0, -1]}
           handleStart={() => this.handleStart()}
         />
         <Settings
-          topics={this.state.topics}
-          messageSpeed={
-            parseInt(this.state.messageSpeed) / 1000
-          }
-          chosenTopics={this.state.chosenTopics}
+          topics={Topics}
+          messageSpeed={parseInt(messageSpeed) / 1000}
+          chosenTopics={chosenTopics}
           setMessageSpeed={s => this.setMessageSpeed(s)}
           handleChangeTopic={(t, i) =>
             this.handleChangeTopic(t, i)
           }
         />
         <ChatMessages
-          speed={this.state.messageSpeed}
-          chosenTopics={this.state.chosenTopics}
-          messagesOn={this.state.messagesOn}
+          speed={messageSpeed}
+          chosenTopics={chosenTopics}
+          messagesOn={messagesOn}
           server={this.server}
         />
-        <div className='footer_base'>
+        <div className={styles.footer}>
           Joni Tuhkanen
           <br />
-          jonituhkanen@outlook.com
+          joni.tuhkanen@protonmail.com
         </div>
       </div>
     );

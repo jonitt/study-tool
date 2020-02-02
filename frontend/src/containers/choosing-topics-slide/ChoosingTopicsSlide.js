@@ -1,6 +1,7 @@
 import React from 'react';
 import TopicSelect from '../../components/topic-select/TopicSelect';
 import TopicListing from './TopicListing';
+import styles from './ChoosingTopicsSlide.css';
 
 /*
 props:
@@ -14,69 +15,74 @@ class ChoosingTopicsSlide extends React.Component {
 
     this.state = {
       topics: this.props.topics,
-      startHandler: () => {} //start is revented by default to prevent accidental pressing of start button
+      allowSubmit: false
     };
   }
 
   componentDidUpdate(prevProps) {
+    const { hidden, handleStart } = this.props;
     //disable Start-button for a while when class is changed to prevent
     //user from clicking the button by accident
-    if (prevProps.class != this.props.class) {
+    if (prevProps.hidden != hidden) {
       setTimeout(
         () =>
           this.setState({
-            startHandler: () => this.props.handleStart()
+            allowSubmit: true
           }),
-        800
+        600
       );
       //this needs to be triggered by preivous flag being submitted
     }
   }
 
-  handleStart() {
-    this.state.startHandler();
-  }
-
   render() {
+    const {
+      hidden,
+      topics,
+      chosenTopicIndexes,
+      handleChoosingTopic,
+      handleStart
+    } = this.props;
+    const { allowSubmit } = this.state;
     return (
-      <div className={this.props.class}>
-        <div className='choosing_topics_slide_paragraph_1'>
+      <div
+        className={hidden ? styles.hidden : styles.slide}
+      >
+        <div className={styles.paragraph1}>
           What would you like to learn about?
           <br />
-          <hr className='choosing_topics_slide_line' />
+          <hr className={styles.line} />
         </div>
         <br />
-        <div className='choosing_topics_slide_paragraph_2'>
+        <div className={styles.paragraph2}>
           Topic 1
           <br />
           <TopicListing
             handleChoosingTopic={t =>
-              this.props.handleChoosingTopic(t, 0)
+              handleChoosingTopic(t, 0)
             }
-            topics={this.props.topics}
-            chosenTopicIndex={
-              this.props.chosenTopicIndexes[0]
-            }
+            topics={topics}
+            chosenTopicIndex={chosenTopicIndexes[0]}
           />
         </div>
         <br />
-        <div className='choosing_topics_slide_paragraph_2'>
+        <div className={styles.paragraph2}>
           Topic 2 (optional)
           <br />
           <TopicListing
             handleChoosingTopic={t =>
-              this.props.handleChoosingTopic(t, 1)
+              handleChoosingTopic(t, 1)
             }
-            topics={this.props.topics}
-            chosenTopicIndex={
-              this.props.chosenTopicIndexes[1]
-            }
+            topics={topics}
+            chosenTopicIndex={chosenTopicIndexes[1]}
           />
         </div>
         <br />
         <div
-          className='div_button choosing_topics_slide_submitter'
-          onClick={() => this.handleStart()}
+          className={styles.submitter}
+          onClick={() =>
+            allowSubmit ? handleStart() : null
+          }
         >
           Start
         </div>

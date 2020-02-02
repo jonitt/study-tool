@@ -1,6 +1,7 @@
 import React from 'react';
 import SettingsIcon from '../../svg/settings-icon.svg';
 import SettingsMenu from './SettingsMenu';
+import styles from './Settings.css';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -12,18 +13,16 @@ class Settings extends React.Component {
     this.state = {
       menu: null,
       menuOff: true,
-      iconColorClass: 'settings_icon_not_clicked',
+      iconColorClass: styles.iconNotClicked,
       icon: (
         <SettingsIcon
-          className='settings_icon settings_icon_not_clicked'
+          className={`${styles.icon} ${styles.iconNotClicked}`}
           onClick={() => this.changeMenu()}
         />
       ),
       topics: null
     };
   }
-
-  componentDidUpdate() {}
 
   changeMenu() {
     //only opening is handled, as the menu handles it's closing with
@@ -35,7 +34,6 @@ class Settings extends React.Component {
 
   //opens the settings menu
   openMenu() {
-    console.log('clicked!');
     let menu = (
       <SettingsMenu
         handleChangeTopic={(t, i) =>
@@ -52,7 +50,9 @@ class Settings extends React.Component {
       menu: menu,
       menuOff: false,
       icon: (
-        <SettingsIcon className='settings_icon settings_icon_clicked' />
+        <SettingsIcon
+          className={`${styles.icon} ${styles.iconNotClicked}`}
+        />
       )
     });
   }
@@ -81,7 +81,7 @@ class Settings extends React.Component {
           menuOff: true,
           icon: (
             <SettingsIcon
-              className='settings_icon settings_icon_not_clicked'
+              className={`${styles.icon} ${styles.iconNotClicked}`}
               onClick={() => this.changeMenu()}
             />
           )
@@ -92,7 +92,7 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <div className='settings_base'>
+      <div className={styles.settings}>
         {this.state.icon}
         {this.state.menu}
       </div>

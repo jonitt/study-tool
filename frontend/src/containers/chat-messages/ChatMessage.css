@@ -1,0 +1,22 @@
+.message {
+  box-shadow: 0.1rem 0.4rem 0.3rem 0.1rem #f0f4f7;
+  border-radius: 3px;
+  padding: 1.1rem 1.4rem 1.1rem 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  font-size: 1.7rem;
+  overflow-x: hidden;
+  background-color: #c2f283;
+  vertical-align: middle;
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.green {
+  background-color: #d6faa5; /* c2f283 */
+}
+
+.white {
+  background-color: #fcfeff;
+}

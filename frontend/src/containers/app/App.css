@@ -1,0 +1,21 @@
+.app {
+  padding-bottom: 6.3rem;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f9fc;
+  position: relative;
+}
+
+.footer {
+  box-sizing: border-box;
+  padding-top: 1.3rem;
+  border-top: 2px solid #e9edf0;
+  bottom: 0;
+  width: 100%;
+  height: 6.3rem;
+  font-size: 1.2rem;
+  color: #606263;
+  background-color: #f0f4f7;
+  position: absolute;
+  text-align: center;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatMessage from './ChatMessage';
+import styles from './ChatMessages.css';
 
 class ChatMessages extends React.Component {
   constructor(props) {
@@ -8,22 +9,20 @@ class ChatMessages extends React.Component {
     this.messageWillBeFromTopic = 1;
     this.state = {
       messages: [
-        <ChatMessage
-          color='green'
-          text='The text will appear from here and move towards the top.'
-          key={this.generateKey()}
-        />
+        {
+          color: 'green',
+          text:
+            'The text will appear from here and moves towards the top.'
+        }
       ]
     };
   }
 
   componentDidMount() {
+    const { messagesOn } = this.props;
     //add new messages according to set speed
-    if (this.props.messagesOn) {
-      this.timer = setInterval(
-        () => this.addNewMessage(),
-        this.props.speed
-      );
+    if (messagesOn) {
+      this.setMessageTimer();
     }
   }
 
@@ -32,13 +31,19 @@ class ChatMessages extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.messagesOn) {
+    const { messagesOn } = this.props;
+    if (messagesOn) {
       clearInterval(this.timer);
-      this.timer = setInterval(
-        () => this.addNewMessage(),
-        this.props.speed
-      );
+      this.setMessageTimer();
     }
+  }
+
+  setMessageTimer() {
+    const { speed } = this.props;
+    this.timer = setInterval(
+      () => this.addNewMessage(),
+      speed
+    );
   }
 
   addNewMessage() {
@@ -78,10 +83,7 @@ class ChatMessages extends React.Component {
     } else {
       this.messageWillBeFromTopic = 1;
     }
-    let key = this.generateKey();
-    let message = (
-      <ChatMessage color={color} text={text} key={key} />
-    );
+    let message = { color: color, text: text };
     return message;
   }
 
@@ -93,9 +95,16 @@ class ChatMessages extends React.Component {
   }
 
   render() {
+    const { messages } = this.state;
     return (
-      <div className='chat_messages'>
-        {this.state.messages}
+      <div className={styles.chatMessages}>
+        {messages.map((m, i) => (
+          <ChatMessage
+            color={m.color}
+            text={m.text}
+            key={this.generateKey()}
+          />
+        ))}
       </div>
     );
   }
