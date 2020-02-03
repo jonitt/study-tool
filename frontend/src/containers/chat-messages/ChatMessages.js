@@ -1,23 +1,20 @@
 import React from 'react';
 import ChatMessage from './ChatMessage';
 import styles from './ChatMessages.css';
-import { getBulletPoint } from '../../utils/topicsHandler';
+import { generateKey } from '../../utils/generateKey';
 
 class ChatMessages extends React.Component {
-  constructor(props) {
-    super(props);
+  messageWillBeFromTopic = 0;
 
-    this.messageWillBeFromTopic = 0;
-    this.state = {
-      messages: [
-        {
-          color: 'green',
-          text:
-            'The text will appear from here and moves towards the top.'
-        }
-      ]
-    };
-  }
+  state = {
+    messages: [
+      {
+        color: 'green',
+        text:
+          'The text will appear from here and moves towards the top.'
+      }
+    ]
+  };
 
   componentDidMount() {
     const { messagesOn } = this.props;
@@ -52,12 +49,9 @@ class ChatMessages extends React.Component {
    */
   addNewMessage() {
     const { getBulletPoint } = this.props;
-    let url = this.props.server;
     if (Math.random() >= 0.5) {
-      url += this.props.chosenTopics[0];
       this.messageWillBeFromTopic = 0;
     } else {
-      url += this.props.chosenTopics[1];
       this.messageWillBeFromTopic = 1;
     }
     /*
@@ -65,20 +59,23 @@ class ChatMessages extends React.Component {
       .then(res => res.text()) //JSON.stringify(res))
       .then(res => this.setupNewMessage(res));
     */
-    this.setupNewMessage(getBulletPoint(this.messageWillBeFromTopic));
+    this.setupNewMessage(
+      getBulletPoint(this.messageWillBeFromTopic)
+    );
   }
 
   //add new meesage to this.state.messages
   setupNewMessage(text) {
+    let { messages } = this.state;
     //pop from messages, if there is too many
-    if (this.state.messages.length > 50) {
-      this.state.messages.pop();
+    if (messages.length > 50) {
+      messages.pop();
     }
     //add new message to start of array and update
-    let message = this.createNewMessage(text);
-    this.state.messages.unshift(message);
+    const message = this.createNewMessage(text);
+    messages.unshift(message);
     this.setState({
-      messages: this.state.messages
+      messages: messages
     });
   }
 
@@ -95,13 +92,6 @@ class ChatMessages extends React.Component {
     return message;
   }
 
-  //create random key
-  generateKey() {
-    return Math.random()
-      .toString(36)
-      .substr(2, 16);
-  }
-
   render() {
     const { messages } = this.state;
     return (
@@ -110,7 +100,7 @@ class ChatMessages extends React.Component {
           <ChatMessage
             color={m.color}
             text={m.text}
-            key={this.generateKey()}
+            key={generateKey()}
           />
         ))}
       </div>

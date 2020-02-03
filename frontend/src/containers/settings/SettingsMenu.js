@@ -13,15 +13,16 @@ class SettingsMenu extends React.Component {
   }
 
   handleOutOfFocus(e) {
+    const { handleOutOfFocus } = this.props;
     //if user clicked inside element, do nothing
     if (this.node.contains(e.target)) {
       return;
     }
 
-    this.props.handleOutOfFocus();
+    handleOutOfFocus();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     document.addEventListener(
       'mousedown',
       this.handleOutOfFocus,
@@ -37,15 +38,14 @@ class SettingsMenu extends React.Component {
     );
   }
 
-  handleChangeTopic(t, i) {
-    this.props.handleChangeTopic(t, i);
-  }
-
-  handleMessageSpeed(s) {
-    this.props.setMessageSpeed(s);
-  }
-
   render() {
+    const {
+      setMessageSpeed,
+      handleChangeTopic,
+      messageSpeed,
+      chosenTopics,
+      topics
+    } = this.props;
     return (
       <div
         className={styles.menu}
@@ -56,9 +56,9 @@ class SettingsMenu extends React.Component {
             Choose topic 1
           </label>
           <TopicSelect
-            handleChange={t => this.handleChangeTopic(t, 0)}
-            value={this.props.chosenTopics[0]}
-            topics={this.props.topics}
+            handleChange={t => handleChangeTopic(t, 0)}
+            value={chosenTopics[0]}
+            topics={topics}
             className={styles.select1}
           />
         </div>
@@ -67,9 +67,9 @@ class SettingsMenu extends React.Component {
             Choose topic 2
           </label>
           <TopicSelect
-            handleChange={t => this.handleChangeTopic(t, 1)}
-            value={this.props.chosenTopics[1]}
-            topics={this.props.topics}
+            handleChange={t => handleChangeTopic(t, 1)}
+            value={chosenTopics[1]}
+            topics={topics}
             className={styles.select2}
           />
         </div>
@@ -81,12 +81,12 @@ class SettingsMenu extends React.Component {
             Message speed (s)
           </label>
           <NumberInput
-            value={this.props.messageSpeed}
+            value={messageSpeed}
             min='1'
             max='6000'
             id='settings_menu_message_speed_numberinput'
             className={styles.input}
-            handleChange={s => this.handleMessageSpeed(s)}
+            handleChange={s => setMessageSpeed(s)}
           />
         </div>
       </div>

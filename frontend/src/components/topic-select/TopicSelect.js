@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './TopicSelect.css';
+import { generateKey } from '../../utils/generateKey';
 
 /*
 props:
@@ -8,30 +9,21 @@ props:
   handleChange = handler for value change
 */
 class TopicSelect extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-
-    console.log(this.props.value);
-    this.state = {
-      selected: this.firstToUpper(this.props.value).replace(
-        '_',
-        ' '
-      ),
-      topics: null
-    };
-  }
+  state = {
+    selected: this.props.value,
+    topics: null
+  };
 
   componentDidMount() {
     this.addTopics(this.props.topics);
   }
 
   componentDidUpdate(prevProps) {
+    const { topics } = this.props;
     if (
       prevProps.topics.length != this.props.topics.length
     ) {
-      this.addTopics(this.props.topics);
+      this.addTopics(topics);
     }
   }
 
@@ -41,7 +33,7 @@ class TopicSelect extends React.Component {
 
   addTopics(topicNames) {
     let topics = topicNames.map(t => (
-      <option key={this.generateKey()} value={t}>
+      <option key={generateKey()} value={t}>
         {t}
       </option>
     ));
@@ -50,35 +42,28 @@ class TopicSelect extends React.Component {
     });
   }
 
-  //create random key
-  generateKey() {
-    return Math.random()
-      .toString(36)
-      .substr(2, 16);
-  }
-
-  handleChange(e) {
+  handleChange = e => {
     const //
       { handleChange } = this.props,
       value = e.target.value;
-    console.log('target',e.target);
     this.setState({
       selected: value
     });
     handleChange(value);
-  }
+  };
 
   render() {
     const { topics, id } = this.props;
+    const { selected } = this.state;
     return (
       <select
-        value={this.state.selected}
+        value={selected}
         id={id}
         onChange={this.handleChange}
         className={styles.select}
       >
         {topics.map(t => (
-          <option key={this.generateKey()} value={t.code}>
+          <option key={generateKey()} value={t.code}>
             {t.title}
           </option>
         ))}

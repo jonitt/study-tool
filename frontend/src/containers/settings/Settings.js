@@ -4,56 +4,35 @@ import SettingsMenu from './SettingsMenu';
 import styles from './Settings.css';
 
 class Settings extends React.Component {
-  constructor(props) {
-    super(props);
+  messageSpeed = this.props.messageSpeed;
+  chosenTopics = this.props.chosenTopics;
 
-    this.messageSpeed = this.props.messageSpeed;
-    this.chosenTopics = this.props.chosenTopics;
-
-    this.state = {
-      menu: null,
-      menuOff: true,
-      iconColorClass: styles.iconNotClicked,
-      icon: (
-        <SettingsIcon
-          className={`${styles.icon} ${styles.iconNotClicked}`}
-          onClick={() => this.changeMenu()}
-        />
-      ),
-      topics: null
-    };
-  }
+  state = {
+    menu: null,
+    menuOff: true,
+    iconColorClass: styles.iconNotClicked,
+    icon: (
+      <SettingsIcon
+        className={`${styles.icon} ${styles.iconNotClicked}`}
+        onClick={() => this.changeMenu()}
+      />
+    ),
+    topics: null
+  };
 
   changeMenu() {
+    const { menuOff } = this.state;
     //only opening is handled, as the menu handles it's closing with
     //a listener itself
-    if (this.state.menuOff) {
+    if (menuOff) {
       this.openMenu();
     }
   }
 
   //opens the settings menu
   openMenu() {
-    let menu = (
-      <SettingsMenu
-        handleChangeTopic={(t, i) =>
-          this.handleChangeTopic(t, i)
-        }
-        chosenTopics={this.chosenTopics}
-        topics={this.props.topics}
-        setMessageSpeed={s => this.handleMessageSpeed(s)}
-        handleOutOfFocus={() => this.closeMenu()}
-        messageSpeed={this.messageSpeed}
-      />
-    );
     this.setState({
-      menu: menu,
-      menuOff: false,
-      icon: (
-        <SettingsIcon
-          className={`${styles.icon} ${styles.iconNotClicked}`}
-        />
-      )
+      menuOff: false
     });
   }
 
@@ -64,10 +43,11 @@ class Settings extends React.Component {
     this.props.setMessageSpeed(s);
   }
 
-  handleChangeTopic(t, i) {
-    this.chosenTopics[i] = t;
+  handleChangeTopic(topic, i) {
+    const { handleChangeTopic } = this.props;
+    this.chosenTopics[i] = topic;
 
-    this.props.handleChangeTopic(t, i);
+    handleChangeTopic(topic, i);
   }
 
   //closes the settings menu
@@ -77,24 +57,40 @@ class Settings extends React.Component {
     setTimeout(
       () =>
         this.setState({
-          menu: null,
-          menuOff: true,
-          icon: (
-            <SettingsIcon
-              className={`${styles.icon} ${styles.iconNotClicked}`}
-              onClick={() => this.changeMenu()}
-            />
-          )
+          menuOff: true
         }),
       100
     );
   }
 
   render() {
+    const { menuOff } = this.state;
     return (
       <div className={styles.settings}>
-        {this.state.icon}
-        {this.state.menu}
+        {menuOff ? (
+          <SettingsIcon
+            className={`${styles.icon} ${styles.iconNotClicked}`}
+            onClick={() => this.changeMenu()}
+          />
+        ) : (
+          <SettingsIcon
+            className={`${styles.icon} ${styles.iconClicked}`}
+          />
+        )}
+        {menuOff ? null : (
+          <SettingsMenu
+            handleChangeTopic={(t, i) =>
+              this.handleChangeTopic(t, i)
+            }
+            chosenTopics={this.chosenTopics}
+            topics={this.props.topics}
+            setMessageSpeed={s =>
+              this.handleMessageSpeed(s)
+            }
+            handleOutOfFocus={() => this.closeMenu()}
+            messageSpeed={this.messageSpeed}
+          />
+        )}
       </div>
     );
   }

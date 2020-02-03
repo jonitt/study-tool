@@ -10,17 +10,13 @@ props:
   handleChoosingTopic(t, i) = handler of choosing topic, t = name, i = index
 */
 class ChoosingTopicsSlide extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      topics: this.props.topics,
-      allowSubmit: false
-    };
-  }
+  state = {
+    topics: this.props.topics,
+    allowSubmit: false
+  };
 
   componentDidUpdate(prevProps) {
-    const { hidden, handleStart } = this.props;
+    const { hidden } = this.props;
     //disable Start-button for a while when class is changed to prevent
     //user from clicking the button by accident
     if (prevProps.hidden != hidden) {
@@ -31,7 +27,6 @@ class ChoosingTopicsSlide extends React.Component {
           }),
         600
       );
-      //this needs to be triggered by preivous flag being submitted
     }
   }
 

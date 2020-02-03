@@ -1,6 +1,7 @@
 import React from 'react';
 import TopicListingChoice from './TopicListingChoice.js';
-import styles from './TopicListing.css'
+import styles from './TopicListing.css';
+import { generateKey } from '../../utils/generateKey';
 
 /*
 props:
@@ -37,12 +38,11 @@ class TopicListing extends React.Component {
   };
 
   //remove old choice and set new choice
-  handleChoosingTopic = chosen => {
+  handleChoosingTopic = chosenIndex => {
     const { handleChoosingTopic, topics } = this.props;
-    let index = chosen.props.index;
-    this.highlightTopic(index);
+    this.highlightTopic(chosenIndex);
 
-    handleChoosingTopic(topics[index].code);
+    handleChoosingTopic(topics[chosenIndex].code);
   };
 
   //mark topic as chosen
@@ -50,12 +50,6 @@ class TopicListing extends React.Component {
     this.setState({
       chosenTopicIndex: index
     });
-
-  //create random key
-  generateKey = () =>
-    Math.random()
-      .toString(36)
-      .substr(2, 16);
 
   render() {
     const { topics } = this.props;
@@ -68,8 +62,8 @@ class TopicListing extends React.Component {
             index={i}
             chosen={i == chosenTopicIndex}
             text={t.title}
-            handleClick={c => this.handleChoosingTopic(c)}
-            key={this.generateKey()}
+            handleClick={i => this.handleChoosingTopic(i)}
+            key={generateKey()}
           />
         ))}
       </div>

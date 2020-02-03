@@ -8,42 +8,24 @@ import ChatMessages from '../chat-messages/ChatMessages';
 import SettingsIcon from '../../svg/settings-icon.svg';
 import Settings from '../settings/Settings';
 import * as CountriesApi from '../../api/countries';
-import { Topics } from '../../utils/topics';
+import { Topics } from '../../utils/data/topics';
 import styles from './App.css';
 import * as topicHandler from '../../utils/topicsHandler';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.server = 'https://studytool.herokuapp.com/'; //http://localhost:3000/
-    this.asd = {};
-    this.state = {
-      topicsSlideHidden: true,
-      messagesOn: false,
-      messageSpeed: '4000',
-      chosenTopics: ['countries-capitals', ''],
-      countriesData: null
-    };
-  }
+  state = {
+    topicsSlideHidden: true,
+    messagesOn: false,
+    messageSpeed: '4000',
+    chosenTopics: ['countries-capitals', ''],
+    countriesData: null
+  };
 
   componentDidMount() {
-    //this.fetchTopics();
     CountriesApi.fetchCountries().then(res =>
       this.setState({ countriesData: res })
     );
   }
-
-  /*
-  fetchTopics() {
-    fetch(this.server + 'topics')
-      .then(res => res.text())
-      .then(res =>
-        this.setState({
-          topics: JSON.parse(res)
-        })
-      );
-  }*/
 
   /**
    * Show the topic's choosing page
@@ -63,9 +45,7 @@ class App extends Component {
     if (chosenTopics[1].length < 1) {
       chosenTopics[1] = chosenTopics[0];
     }
-    console.log(
-      'setting to start showing messages and hide slide'
-    );
+
     this.setState({
       messagesOn: true,
       topicsSlideHidden: true,
@@ -90,7 +70,6 @@ class App extends Component {
    */
   handleChangeTopic(t, i) {
     let { chosenTopics } = this.state;
-    console.log('new topic:' + t);
     chosenTopics[i] = t;
     this.setState({
       chosenTopics: chosenTopics
@@ -103,12 +82,7 @@ class App extends Component {
       topic = Topics.find(
         t => t.code === chosenTopics[topicIndex]
       );
-
-      console.log(
-        chosenTopics[topicIndex],
-        chosenTopics,
-        topicIndex
-      );
+      
     return topicHandler.getCountriesBulletPoint(
       topic,
       countriesData
@@ -149,7 +123,6 @@ class App extends Component {
           speed={messageSpeed}
           chosenTopics={chosenTopics}
           messagesOn={messagesOn}
-          server={this.server}
           getBulletPoint={topicIndex =>
             this.getBulletPoint(topicIndex)
           }

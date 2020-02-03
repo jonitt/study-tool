@@ -12,14 +12,12 @@ class NumberInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
     this.timer = null;
     this.value = props.value;
   }
 
-  handleChange(e) {
-    //value is changed with a timer, so the server does not get filled
-    //with request while user changes the value
+  handleChange = e => {
+    //value is changed with a timer, so there won't be too many requests
     let value = e.target.value;
     if (value < this.props.min || value > this.props.max) {
       return;
@@ -30,17 +28,18 @@ class NumberInput extends React.Component {
       () => this.props.handleChange(value),
       1000
     );
-  }
+  };
 
   render() {
+    const { min, max, id } = this.props;
     return (
       <input
         type='number'
         onChange={this.handleChange}
         defaultValue={this.value}
-        min={this.props.min}
-        max={this.props.max}
-        id={this.props.id}
+        min={min}
+        max={max}
+        id={id}
       />
     );
   }

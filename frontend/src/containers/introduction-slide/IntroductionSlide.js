@@ -2,23 +2,17 @@ import React from 'react';
 import styles from './IntroductionSlide.css';
 
 class IntroductionSlide extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    submitted: false
+  };
 
-    this.handleClick = this.handleClick.bind(this);
-
-    this.state = {
-      submitted: false
-    };
-  }
-
-  handleClick() {
+  handleClick = () => {
     this.props.handleContinue();
 
     this.setState({
       submitted: true
     });
-  }
+  };
 
   render() {
     const { submitted } = this.state;
