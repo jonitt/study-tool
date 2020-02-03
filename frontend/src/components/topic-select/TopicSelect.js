@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TopicSelect.css'
+import styles from './TopicSelect.css';
 
 /*
 props:
@@ -58,11 +58,14 @@ class TopicSelect extends React.Component {
   }
 
   handleChange(e) {
-    let value = e.target.value;
+    const //
+      { handleChange } = this.props,
+      value = e.target.value;
+    console.log('target',e.target);
     this.setState({
       selected: value
     });
-    this.props.handleChange(value);
+    handleChange(value);
   }
 
   render() {
@@ -75,7 +78,7 @@ class TopicSelect extends React.Component {
         className={styles.select}
       >
         {topics.map(t => (
-          <option key={this.generateKey()} value={t.title}>
+          <option key={this.generateKey()} value={t.code}>
             {t.title}
           </option>
         ))}

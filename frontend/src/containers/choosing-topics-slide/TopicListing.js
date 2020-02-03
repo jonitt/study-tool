@@ -38,11 +38,11 @@ class TopicListing extends React.Component {
 
   //remove old choice and set new choice
   handleChoosingTopic = chosen => {
-    const { handleChoosingTopic } = this.props;
+    const { handleChoosingTopic, topics } = this.props;
     let index = chosen.props.index;
     this.highlightTopic(index);
 
-    handleChoosingTopic(chosen.props.text);
+    handleChoosingTopic(topics[index].code);
   };
 
   //mark topic as chosen

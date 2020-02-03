@@ -1,12 +1,13 @@
 import React from 'react';
 import ChatMessage from './ChatMessage';
 import styles from './ChatMessages.css';
+import { getBulletPoint } from '../../utils/topicsHandler';
 
 class ChatMessages extends React.Component {
   constructor(props) {
     super(props);
 
-    this.messageWillBeFromTopic = 1;
+    this.messageWillBeFromTopic = 0;
     this.state = {
       messages: [
         {
@@ -46,18 +47,25 @@ class ChatMessages extends React.Component {
     );
   }
 
+  /**
+   * Adds a new bullet point message to the messages box
+   */
   addNewMessage() {
+    const { getBulletPoint } = this.props;
     let url = this.props.server;
     if (Math.random() >= 0.5) {
       url += this.props.chosenTopics[0];
-      this.messageWillBeFromTopic = 1;
+      this.messageWillBeFromTopic = 0;
     } else {
       url += this.props.chosenTopics[1];
-      this.messageWillBeFromTopic = 2;
+      this.messageWillBeFromTopic = 1;
     }
+    /*
     fetch(url)
       .then(res => res.text()) //JSON.stringify(res))
       .then(res => this.setupNewMessage(res));
+    */
+    this.setupNewMessage(getBulletPoint(this.messageWillBeFromTopic));
   }
 
   //add new meesage to this.state.messages
@@ -77,11 +85,11 @@ class ChatMessages extends React.Component {
   createNewMessage(text) {
     //decide color of message
     let color = 'white';
-    if (this.messageWillBeFromTopic == 1) {
+    if (this.messageWillBeFromTopic == 0) {
       color = 'green';
-      this.messageWillBeFromTopic = 2;
-    } else {
       this.messageWillBeFromTopic = 1;
+    } else {
+      this.messageWillBeFromTopic = 0;
     }
     let message = { color: color, text: text };
     return message;

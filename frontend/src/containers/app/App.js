@@ -10,6 +10,7 @@ import Settings from '../settings/Settings';
 import * as CountriesApi from '../../api/countries';
 import { Topics } from '../../utils/topics';
 import styles from './App.css';
+import * as topicHandler from '../../utils/topicsHandler';
 
 class App extends Component {
   constructor(props) {
@@ -21,14 +22,15 @@ class App extends Component {
       topicsSlideHidden: true,
       messagesOn: false,
       messageSpeed: '4000',
-      chosenTopics: ['countries-capitals', '']
+      chosenTopics: ['countries-capitals', ''],
+      countriesData: null
     };
   }
 
   componentDidMount() {
     //this.fetchTopics();
     CountriesApi.fetchCountries().then(res =>
-      console.log(res)
+      this.setState({ countriesData: res })
     );
   }
 
@@ -61,7 +63,9 @@ class App extends Component {
     if (chosenTopics[1].length < 1) {
       chosenTopics[1] = chosenTopics[0];
     }
-    console.log('setting to start showing messages and hide slide')
+    console.log(
+      'setting to start showing messages and hide slide'
+    );
     this.setState({
       messagesOn: true,
       topicsSlideHidden: true,
@@ -87,13 +91,28 @@ class App extends Component {
   handleChangeTopic(t, i) {
     let { chosenTopics } = this.state;
     console.log('new topic:' + t);
-    chosenTopics[i] = t
-      .trim()
-      .replace(' ', '_')
-      .toLowerCase();
+    chosenTopics[i] = t;
     this.setState({
       chosenTopics: chosenTopics
     });
+  }
+
+  getBulletPoint(topicIndex) {
+    const //
+      { countriesData, chosenTopics } = this.state,
+      topic = Topics.find(
+        t => t.code === chosenTopics[topicIndex]
+      );
+
+      console.log(
+        chosenTopics[topicIndex],
+        chosenTopics,
+        topicIndex
+      );
+    return topicHandler.getCountriesBulletPoint(
+      topic,
+      countriesData
+    );
   }
 
   render() {
@@ -131,6 +150,9 @@ class App extends Component {
           chosenTopics={chosenTopics}
           messagesOn={messagesOn}
           server={this.server}
+          getBulletPoint={topicIndex =>
+            this.getBulletPoint(topicIndex)
+          }
         />
         <div className={styles.footer}>
           Joni Tuhkanen
