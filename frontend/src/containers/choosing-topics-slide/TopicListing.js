@@ -11,23 +11,17 @@ props:
   chosenTopicIndex: index of chosen topic in given list of topics
 */
 class TopicListing extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    chosenTopicIndex: -1 //index of chosen topic
+  };
 
-    this.state = {
-      topics: [], //list of topic components
-      chosenTopicIndex: -1 //index of chosen topic
-    };
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     this.initiateListing();
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.topics.length != this.props.topics.length
-    ) {
+    const { topics } = this.props;
+    if (prevProps.topics.length != topics.length) {
       this.initiateListing();
     }
   }
@@ -56,7 +50,6 @@ class TopicListing extends React.Component {
     const { chosenTopicIndex } = this.state;
     return (
       <div className={styles.listing}>
-        {this.state.topics}
         {topics.map((t, i) => (
           <TopicListingChoice
             index={i}

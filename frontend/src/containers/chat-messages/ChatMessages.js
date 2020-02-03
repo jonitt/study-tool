@@ -54,17 +54,12 @@ class ChatMessages extends React.Component {
     } else {
       this.messageWillBeFromTopic = 1;
     }
-    /*
-    fetch(url)
-      .then(res => res.text()) //JSON.stringify(res))
-      .then(res => this.setupNewMessage(res));
-    */
     this.setupNewMessage(
       getBulletPoint(this.messageWillBeFromTopic)
     );
   }
 
-  //add new meesage to this.state.messages
+  //add new meesage to state.messages
   setupNewMessage(text) {
     let { messages } = this.state;
     //pop from messages, if there is too many

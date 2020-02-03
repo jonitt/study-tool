@@ -51,7 +51,7 @@ class SettingsMenu extends React.Component {
         className={styles.menu}
         ref={node => (this.node = node)}
       >
-        <div className='settings_menu_choose_topic'>
+        <div>
           <label className={styles.label}>
             Choose topic 1
           </label>
@@ -73,7 +73,7 @@ class SettingsMenu extends React.Component {
             className={styles.select2}
           />
         </div>
-        <div className='settings_menu_message_speed'>
+        <div>
           <label
             className={styles.label}
             htmlFor='settings_menu_message_speed_numberinput'

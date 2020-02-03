@@ -11,7 +11,6 @@ props:
 */
 class ChoosingTopicsSlide extends React.Component {
   state = {
-    topics: this.props.topics,
     allowSubmit: false
   };
 
