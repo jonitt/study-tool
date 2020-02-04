@@ -1,0 +1,10 @@
+.chatMessages {
+  margin: 0 10% 0 10%;
+  width: 80%;
+  height: 100%;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+}

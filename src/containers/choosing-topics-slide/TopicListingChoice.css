@@ -1,0 +1,12 @@
+
+.choice {
+  position: relative;
+  cursor: pointer;
+  background-color: #fcfcfc;
+}
+
+.choiceClicked {
+  position: relative;
+  cursor: pointer;
+  background-color: #d0e9fb;
+}

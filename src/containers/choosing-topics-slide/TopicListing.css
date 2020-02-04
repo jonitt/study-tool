@@ -1,0 +1,7 @@
+.listing {
+  position: relative;
+  margin-top: 10px;
+  height: 100px;
+  overflow-y: scroll;
+  color: #171717;
+}
