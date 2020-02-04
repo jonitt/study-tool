@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import IntroductionSlide from '../introduction-slide/IntroductionSlide';
 import ChoosingTopicsSlide from '../choosing-topics-slide/ChoosingTopicsSlide';
 import ChatMessages from '../chat-messages/ChatMessages';
-import SettingsIcon from '../../svg/settings-icon.svg';
 import Settings from '../settings/Settings';
 import * as CountriesApi from '../../api/countries';
 import { Topics } from '../../utils/data/topics';
@@ -82,7 +81,7 @@ class App extends Component {
       topic = Topics.find(
         t => t.code === chosenTopics[topicIndex]
       );
-      
+
     return topicHandler.getCountriesBulletPoint(
       topic,
       countriesData
