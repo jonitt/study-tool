@@ -24,10 +24,7 @@ class NumberInput extends React.Component {
     }
     clearTimeout(this.timer);
     this.value = value;
-    this.timer = setTimeout(
-      () => this.props.handleChange(value),
-      1000
-    );
+    this.timer = setTimeout(() => this.props.handleChange(value), 1000);
   };
 
   render() {

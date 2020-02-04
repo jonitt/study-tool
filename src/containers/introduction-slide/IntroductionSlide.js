@@ -3,23 +3,21 @@ import styles from './IntroductionSlide.css';
 
 class IntroductionSlide extends React.Component {
   state = {
-    submitted: false
+    submitted: false,
   };
 
   handleClick = () => {
     this.props.handleContinue();
 
     this.setState({
-      submitted: true
+      submitted: true,
     });
   };
 
   render() {
     const { submitted } = this.state;
     return (
-      <div
-        className={submitted ? styles.hidden : styles.slide}
-      >
+      <div className={submitted ? styles.hidden : styles.slide}>
         <div className='introduction_slide_text'>
           <h1 className={styles.paragraph1}>
             Effortless study tool helps you&nbsp;
@@ -51,10 +49,7 @@ class IntroductionSlide extends React.Component {
           <br />
           <hr className={styles.line} />
           <br />
-          <div
-            onClick={this.handleClick}
-            className={styles.submitter}
-          >
+          <div onClick={this.handleClick} className={styles.submitter}>
             Continue ≫
           </div>
         </div>

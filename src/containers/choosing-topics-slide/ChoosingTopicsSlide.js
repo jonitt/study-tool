@@ -11,7 +11,7 @@ props:
 */
 class ChoosingTopicsSlide extends React.Component {
   state = {
-    allowSubmit: false
+    allowSubmit: false,
   };
 
   componentDidUpdate(prevProps) {
@@ -22,7 +22,7 @@ class ChoosingTopicsSlide extends React.Component {
       setTimeout(
         () =>
           this.setState({
-            allowSubmit: true
+            allowSubmit: true,
           }),
         600
       );
@@ -35,13 +35,11 @@ class ChoosingTopicsSlide extends React.Component {
       topics,
       chosenTopicIndexes,
       handleChoosingTopic,
-      handleStart
+      handleStart,
     } = this.props;
     const { allowSubmit } = this.state;
     return (
-      <div
-        className={hidden ? styles.hidden : styles.slide}
-      >
+      <div className={hidden ? styles.hidden : styles.slide}>
         <div className={styles.paragraph1}>
           What would you like to learn about?
           <br />
@@ -52,9 +50,7 @@ class ChoosingTopicsSlide extends React.Component {
           Topic 1
           <br />
           <TopicListing
-            handleChoosingTopic={t =>
-              handleChoosingTopic(t, 0)
-            }
+            handleChoosingTopic={t => handleChoosingTopic(t, 0)}
             topics={topics}
             chosenTopicIndex={chosenTopicIndexes[0]}
           />
@@ -64,9 +60,7 @@ class ChoosingTopicsSlide extends React.Component {
           Topic 2 (optional)
           <br />
           <TopicListing
-            handleChoosingTopic={t =>
-              handleChoosingTopic(t, 1)
-            }
+            handleChoosingTopic={t => handleChoosingTopic(t, 1)}
             topics={topics}
             chosenTopicIndex={chosenTopicIndexes[1]}
           />
@@ -74,9 +68,7 @@ class ChoosingTopicsSlide extends React.Component {
         <br />
         <div
           className={styles.submitter}
-          onClick={() =>
-            allowSubmit ? handleStart() : null
-          }
+          onClick={() => (allowSubmit ? handleStart() : null)}
         >
           Start
         </div>

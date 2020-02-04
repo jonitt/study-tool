@@ -9,11 +9,7 @@ app.use(function(req, res, next) {
   initiateHeader(res);
   next();
 });
-app.use(
-  express.static(
-    path.join(__dirname + '/dist/')
-  )
-);
+app.use(express.static(path.join(__dirname + '/dist/')));
 
 const port = process.env.PORT || 3000;
 
@@ -21,7 +17,7 @@ function initiateHeader(res) {
   res.set({
     'X-XSS-Protection': '1; mode=block',
     'X-Frame-Options': 'DENY',
-    'X-Content-Type-Options': 'nosniff'
+    'X-Content-Type-Options': 'nosniff',
   });
   return res;
 }

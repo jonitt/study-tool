@@ -2,13 +2,10 @@ export const getBulletPoint = topic => {};
 
 /**
  * Gets a short info string of given topic about countries.
- * @param {obj} topic 
- * @param {*} countriesData 
+ * @param {obj} topic
+ * @param {*} countriesData
  */
-export const getCountriesBulletPoint = (
-  topic,
-  countriesData
-) => {
+export const getCountriesBulletPoint = (topic, countriesData) => {
   const country = getRandomCountry(countriesData);
   let bulletPoint;
   /*
@@ -25,9 +22,7 @@ export const getCountriesBulletPoint = (
       const population = country.population + '';
       bulletPoint = `${country.name} - ${population.charAt(
         0
-      )} ${population
-        .substring(1)
-        .replace(/(.{3})/g, '$1 ')}`;
+      )} ${population.substring(1).replace(/(.{3})/g, '$1 ')}`;
       break;
     default:
       console.log(
@@ -44,8 +39,6 @@ export const getCountriesBulletPoint = (
  * @param {*} countries data of all countries from api
  */
 const getRandomCountry = countries => {
-  const index = Math.floor(
-    Math.random() * (countries.length - 1)
-  );
+  const index = Math.floor(Math.random() * (countries.length - 1));
   return countries[index];
 };

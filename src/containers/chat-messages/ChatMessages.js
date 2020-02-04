@@ -10,10 +10,9 @@ class ChatMessages extends React.Component {
     messages: [
       {
         color: 'green',
-        text:
-          'The text will appear from here and moves towards the top.'
-      }
-    ]
+        text: 'The text will appear from here and moves towards the top.',
+      },
+    ],
   };
 
   componentDidMount() {
@@ -38,10 +37,7 @@ class ChatMessages extends React.Component {
 
   setMessageTimer() {
     const { speed } = this.props;
-    this.timer = setInterval(
-      () => this.addNewMessage(),
-      speed
-    );
+    this.timer = setInterval(() => this.addNewMessage(), speed);
   }
 
   /**
@@ -54,9 +50,7 @@ class ChatMessages extends React.Component {
     } else {
       this.messageWillBeFromTopic = 1;
     }
-    this.setupNewMessage(
-      getBulletPoint(this.messageWillBeFromTopic)
-    );
+    this.setupNewMessage(getBulletPoint(this.messageWillBeFromTopic));
   }
 
   //add new meesage to state.messages
@@ -70,7 +64,7 @@ class ChatMessages extends React.Component {
     const message = this.createNewMessage(text);
     messages.unshift(message);
     this.setState({
-      messages: messages
+      messages: messages,
     });
   }
 
@@ -92,11 +86,7 @@ class ChatMessages extends React.Component {
     return (
       <div className={styles.chatMessages}>
         {messages.map((m, i) => (
-          <ChatMessage
-            color={m.color}
-            text={m.text}
-            key={generateKey()}
-          />
+          <ChatMessage color={m.color} text={m.text} key={generateKey()} />
         ))}
       </div>
     );
