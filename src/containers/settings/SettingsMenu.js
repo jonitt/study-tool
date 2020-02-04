@@ -7,9 +7,7 @@ class SettingsMenu extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleOutOfFocus = this.handleOutOfFocus.bind(
-      this
-    );
+    this.handleOutOfFocus = this.handleOutOfFocus.bind(this);
   }
 
   handleOutOfFocus(e) {
@@ -23,19 +21,11 @@ class SettingsMenu extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener(
-      'mousedown',
-      this.handleOutOfFocus,
-      false
-    );
+    document.addEventListener('mousedown', this.handleOutOfFocus, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      'mousedown',
-      this.handleOutOfFocus,
-      false
-    );
+    document.removeEventListener('mousedown', this.handleOutOfFocus, false);
   }
 
   render() {
@@ -44,17 +34,12 @@ class SettingsMenu extends React.Component {
       handleChangeTopic,
       messageSpeed,
       chosenTopics,
-      topics
+      topics,
     } = this.props;
     return (
-      <div
-        className={styles.menu}
-        ref={node => (this.node = node)}
-      >
+      <div className={styles.menu} ref={node => (this.node = node)}>
         <div>
-          <label className={styles.label}>
-            Choose topic 1
-          </label>
+          <label className={styles.label}>Choose topic 1</label>
           <TopicSelect
             handleChange={t => handleChangeTopic(t, 0)}
             value={chosenTopics[0]}
@@ -63,9 +48,7 @@ class SettingsMenu extends React.Component {
           />
         </div>
         <div className='settings_menu_choose_topic'>
-          <label className={styles.label}>
-            Choose topic 2
-          </label>
+          <label className={styles.label}>Choose topic 2</label>
           <TopicSelect
             handleChange={t => handleChangeTopic(t, 1)}
             value={chosenTopics[1]}

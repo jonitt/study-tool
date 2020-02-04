@@ -17,7 +17,7 @@ class App extends Component {
     messagesOn: false,
     messageSpeed: '4000',
     chosenTopics: ['countries-capitals', ''],
-    countriesData: null
+    countriesData: null,
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class App extends Component {
    */
   showTopicsSlide() {
     this.setState({
-      topicsSlideHidden: false
+      topicsSlideHidden: false,
     });
   }
 
@@ -48,7 +48,7 @@ class App extends Component {
     this.setState({
       messagesOn: true,
       topicsSlideHidden: true,
-      chosenTopics: chosenTopics
+      chosenTopics: chosenTopics,
     });
   }
 
@@ -58,7 +58,7 @@ class App extends Component {
    */
   setMessageSpeed(speed) {
     this.setState({
-      messageSpeed: speed * 1000 + ''
+      messageSpeed: speed * 1000 + '',
     });
   }
 
@@ -71,21 +71,16 @@ class App extends Component {
     let { chosenTopics } = this.state;
     chosenTopics[i] = t;
     this.setState({
-      chosenTopics: chosenTopics
+      chosenTopics: chosenTopics,
     });
   }
 
   getBulletPoint(topicIndex) {
     const //
       { countriesData, chosenTopics } = this.state,
-      topic = Topics.find(
-        t => t.code === chosenTopics[topicIndex]
-      );
+      topic = Topics.find(t => t.code === chosenTopics[topicIndex]);
 
-    return topicHandler.getCountriesBulletPoint(
-      topic,
-      countriesData
-    );
+    return topicHandler.getCountriesBulletPoint(topic, countriesData);
   }
 
   render() {
@@ -93,17 +88,13 @@ class App extends Component {
       messageSpeed,
       chosenTopics,
       messagesOn,
-      topicsSlideHidden
+      topicsSlideHidden,
     } = this.state;
     return (
       <div className={styles.app}>
-        <IntroductionSlide
-          handleContinue={() => this.showTopicsSlide()}
-        />
+        <IntroductionSlide handleContinue={() => this.showTopicsSlide()} />
         <ChoosingTopicsSlide
-          handleChoosingTopic={(t, i) =>
-            this.handleChangeTopic(t, i)
-          }
+          handleChoosingTopic={(t, i) => this.handleChangeTopic(t, i)}
           hidden={topicsSlideHidden}
           topics={Topics}
           chosenTopicIndexes={[0, -1]}
@@ -114,17 +105,13 @@ class App extends Component {
           messageSpeed={parseInt(messageSpeed) / 1000}
           chosenTopics={chosenTopics}
           setMessageSpeed={s => this.setMessageSpeed(s)}
-          handleChangeTopic={(t, i) =>
-            this.handleChangeTopic(t, i)
-          }
+          handleChangeTopic={(t, i) => this.handleChangeTopic(t, i)}
         />
         <ChatMessages
           speed={messageSpeed}
           chosenTopics={chosenTopics}
           messagesOn={messagesOn}
-          getBulletPoint={topicIndex =>
-            this.getBulletPoint(topicIndex)
-          }
+          getBulletPoint={topicIndex => this.getBulletPoint(topicIndex)}
         />
         <div className={styles.footer}>
           Joni Tuhkanen

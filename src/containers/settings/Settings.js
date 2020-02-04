@@ -17,7 +17,7 @@ class Settings extends React.Component {
         onClick={() => this.changeMenu()}
       />
     ),
-    topics: null
+    topics: null,
   };
 
   changeMenu() {
@@ -32,7 +32,7 @@ class Settings extends React.Component {
   //opens the settings menu
   openMenu() {
     this.setState({
-      menuOff: false
+      menuOff: false,
     });
   }
 
@@ -57,7 +57,7 @@ class Settings extends React.Component {
     setTimeout(
       () =>
         this.setState({
-          menuOff: true
+          menuOff: true,
         }),
       100
     );
@@ -73,20 +73,14 @@ class Settings extends React.Component {
             onClick={() => this.changeMenu()}
           />
         ) : (
-          <SettingsIcon
-            className={`${styles.icon} ${styles.iconClicked}`}
-          />
+          <SettingsIcon className={`${styles.icon} ${styles.iconClicked}`} />
         )}
         {menuOff ? null : (
           <SettingsMenu
-            handleChangeTopic={(t, i) =>
-              this.handleChangeTopic(t, i)
-            }
+            handleChangeTopic={(t, i) => this.handleChangeTopic(t, i)}
             chosenTopics={this.chosenTopics}
             topics={this.props.topics}
-            setMessageSpeed={s =>
-              this.handleMessageSpeed(s)
-            }
+            setMessageSpeed={s => this.handleMessageSpeed(s)}
             handleOutOfFocus={() => this.closeMenu()}
             messageSpeed={this.messageSpeed}
           />

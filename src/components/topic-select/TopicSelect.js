@@ -11,7 +11,7 @@ props:
 class TopicSelect extends React.Component {
   state = {
     selected: this.props.value,
-    topics: null
+    topics: null,
   };
 
   componentDidMount() {
@@ -20,9 +20,7 @@ class TopicSelect extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { topics } = this.props;
-    if (
-      prevProps.topics.length != this.props.topics.length
-    ) {
+    if (prevProps.topics.length != this.props.topics.length) {
       this.addTopics(topics);
     }
   }
@@ -38,7 +36,7 @@ class TopicSelect extends React.Component {
       </option>
     ));
     this.setState({
-      topics: topics
+      topics: topics,
     });
   }
 
@@ -47,7 +45,7 @@ class TopicSelect extends React.Component {
       { handleChange } = this.props,
       value = e.target.value;
     this.setState({
-      selected: value
+      selected: value,
     });
     handleChange(value);
   };

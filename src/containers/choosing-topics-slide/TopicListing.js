@@ -12,7 +12,7 @@ props:
 */
 class TopicListing extends React.Component {
   state = {
-    chosenTopicIndex: -1 //index of chosen topic
+    chosenTopicIndex: -1, //index of chosen topic
   };
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class TopicListing extends React.Component {
   //mark topic as chosen
   highlightTopic = index =>
     this.setState({
-      chosenTopicIndex: index
+      chosenTopicIndex: index,
     });
 
   render() {

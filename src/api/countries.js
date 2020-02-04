@@ -1,4 +1,4 @@
-  /**
+/**
  * Fetches list of countries with info as of follows:
     name: "Afghanistan"
     topLevelDomain: [".af"]
