@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './NumberInput.css';
 
 /*
 props:
@@ -31,6 +32,7 @@ class NumberInput extends React.Component {
     const { min, max, id } = this.props;
     return (
       <input
+        className={styles.input}
         type='number'
         onChange={this.handleChange}
         defaultValue={this.value}
