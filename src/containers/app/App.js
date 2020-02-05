@@ -75,6 +75,10 @@ class App extends Component {
     });
   }
 
+  /**
+   * Returns a short line of text from given topic.
+   * @param {*} topicIndex index of chosen topic (0 or 1)
+   */
   getBulletPoint(topicIndex) {
     const //
       { countriesData, chosenTopics } = this.state,
