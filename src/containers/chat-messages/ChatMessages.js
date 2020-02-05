@@ -77,7 +77,7 @@ class ChatMessages extends React.Component {
     } else {
       this.messageWillBeFromTopic = 0;
     }
-    let message = { color: color, text: text };
+    const message = { color: color, text: text };
     return message;
   }
 

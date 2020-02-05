@@ -47,7 +47,7 @@ class SettingsMenu extends React.Component {
             className={styles.select1}
           />
         </div>
-        <div className='settings_menu_choose_topic'>
+        <div>
           <label className={styles.label}>Choose topic 2</label>
           <TopicSelect
             handleChange={t => handleChangeTopic(t, 1)}

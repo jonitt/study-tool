@@ -14,30 +14,8 @@ class TopicSelect extends React.Component {
     topics: null,
   };
 
-  componentDidMount() {
-    this.addTopics(this.props.topics);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { topics } = this.props;
-    if (prevProps.topics.length != this.props.topics.length) {
-      this.addTopics(topics);
-    }
-  }
-
   firstToUpper(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  addTopics(topicNames) {
-    let topics = topicNames.map(t => (
-      <option key={generateKey()} value={t}>
-        {t}
-      </option>
-    ));
-    this.setState({
-      topics: topics,
-    });
   }
 
   handleChange = e => {
