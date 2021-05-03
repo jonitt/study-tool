@@ -3,8 +3,9 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
+ // watch: true,
   devServer: {
-    port: 9000,
+    port: 3000,
     contentBase: path.join(__dirname, '/dist'),
   },
   module: {
@@ -56,7 +57,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: './template.html',
-      filename: './dist/index.html',
+      filename: './index.html',
     }),
   ],
 };

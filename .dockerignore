@@ -1,0 +1,8 @@
+__mocks__/
+dist/
+node_modules/
+.gitignore
+.prettierignore
+.prettierrc
+README.md
+package-lock.json
