@@ -3,7 +3,6 @@ FROM node:14
 WORKDIR /opt/studytool
 
 COPY . .
-#/opt/studytool/
 
 RUN npm install 
 
