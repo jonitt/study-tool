@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/client/index.js',
  // watch: true,
   devServer: {
     port: 3000,
@@ -39,6 +39,21 @@ module.exports = {
         ],
       },
       {
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              {
+                useBuiltIns: 'usage',
+                targets: {
+                  ie: 11,
+                }
+              }
+            ]
+          }
+        },
         test: /\.svg$/,
         use: [
           {
@@ -56,7 +71,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './template.html',
+      template: './src/template.html',
       filename: './index.html',
     }),
   ],

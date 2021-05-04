@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "14.16.1",
   "description": "",
-  "main": "server/back.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server/server.js",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build:dev": "webpack --mode development --watch",
     "start:dev": "webpack-dev-server",
     "format": "prettier --write \"**/*.js\"",
     "test": "jest"

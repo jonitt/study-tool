@@ -9,7 +9,7 @@ app.use(function(req, res, next) {
   initiateHeader(res);
   next();
 });
-app.use(express.static(path.join(__dirname + '/dist/')));
+app.use(express.static('dist/'));
 
 const port = process.env.PORT || 3000;
 
