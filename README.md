@@ -1,5 +1,3 @@
-Use the tool on: http://studytool.herokuapp.com/
-Please use desktop, as the mobile version has not been optimized.
 
 To run locally: <br />
 1. Navigate to project's folder<br />
